@@ -15,6 +15,9 @@ $.getJSON("/articles", function(data) {
         "</p>" +
         "<hr/>"
     );
+    for (var i = 0; (i = data.length); i++) {
+      location.reload();
+    }
   }
 
   console.log(data);
