@@ -4,8 +4,10 @@ $.getJSON("/articles", function(data) {
       "<p class='posts' data-id='" +
         data[i]._id +
         "'>" +
+        "Title is: " +
         data[i].title +
         "<br />" +
+        "Summary is: " +
         data[i].summary +
         "<br />" +
         `<a href="https://www.levelup.com${data[i].url}">${data[i].url}</a>` +
