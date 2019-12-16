@@ -45,12 +45,12 @@ $.getJSON("/articles", function(data) {
           "' id='savecomment' class='btn btn-primary mt-4'>Save Comment</button>"
       );
 
-      if (data2[0].comments) {
-        for (var i = 0; i < data2[0].comments.length; i++) {
-          $("#comments").append("<h2>Comments for this post</h2>");
-          $("#comments").append(`<p>${data2[i].comments.user}</p>`);
-          $("#comments").append(`<p>${data2[i].comments.body}</p>`);
-        }
+      $("#comments").append("<h2>Comments for this post</h2>");
+      for (var i = 0; i < data2[0].comments.length; i++) {
+        $("#comments").append(`<p>Username: ${data2[0].comments[i].user}</p>`);
+        $("#comments").append(
+          `<p>Comment: ${data2[0].comments[i].body}</p><hr>`
+        );
       }
     });
   });

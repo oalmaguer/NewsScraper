@@ -6,7 +6,7 @@ var path = require("path");
 var mongoose = require("mongoose");
 
 var db = require("./models");
-var PORT = 3000;
+var PORT = 8080;
 var app = express();
 
 // parse request body as JSON
@@ -65,16 +65,6 @@ app.get("/articles", function(req, res) {
 });
 
 app.get("/comments", function(req, res) {
-  db.Comments.find()
-    .then(function(dbComments) {
-      res.json(dbComments);
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
-});
-
-app.get("/comments", function(req, res) {
   db.Comments.find({})
     .then(function(dbComment) {
       res.json(dbComment);
@@ -88,6 +78,7 @@ app.get("/articles/:id", function(req, res) {
   db.Article.find({ _id: req.params.id })
     .populate("comments") //reference article.js
     .then(function(dbArticle) {
+      console.log(dbArticle);
       res.json(dbArticle);
     })
     .catch(function(err) {
