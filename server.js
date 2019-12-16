@@ -6,7 +6,7 @@ var path = require("path");
 var mongoose = require("mongoose");
 
 var db = require("./models");
-var PORT = 8080;
+var PORT = process.env.PORT || 8080;
 var app = express();
 
 // parse request body as JSON
