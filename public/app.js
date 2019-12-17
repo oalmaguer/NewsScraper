@@ -1,22 +1,36 @@
+$("#scrapebtn").click(function() {
+  $.ajax({
+    method: "GET",
+    url: "/scrape",
+    dataType: "json",
+    success: function(res) {
+      console.log(res);
+      alert("Your content is being scraped!");
+    }
+  });
+});
+
 $.getJSON("/articles", function(data) {
-  for (var i = 0; i < data.length; i++) {
-    $("#articles").append(
-      "<p class='posts' data-id='" +
-        data[i]._id +
-        "'>" +
-        "Title is: " +
-        data[i].title +
-        "<br />" +
-        "Summary is: " +
-        data[i].summary +
-        "<br />" +
-        `<a href="https://www.levelup.com${data[i].url}">${data[i].url}</a>` +
-        "<br />" +
-        "</p>" +
-        "<hr/>"
-    );
-    for (var i = 0; (i = data.length); i++) {
-      location.reload();
+  if (data.length == 0) {
+    console.log("No articles");
+    $("#articles").prepend("<h2>No articles to display</h2>");
+  } else {
+    for (var i = 0; i < data.length; i++) {
+      $("#articles").append(
+        "<p class='posts' data-id='" +
+          data[i]._id +
+          "'>" +
+          "Title is: " +
+          data[i].title +
+          "<br />" +
+          "Summary is: " +
+          data[i].summary +
+          "<br />" +
+          `<a href="https://www.levelup.com${data[i].url}">${data[i].url}</a>` +
+          "<br />" +
+          "</p>" +
+          "<hr/>"
+      );
     }
   }
 
@@ -82,4 +96,20 @@ $.getJSON("/articles", function(data) {
     $("#userinput").val("");
     $("bodyinput").val("");
   });
+});
+
+$("#deletebtn").click(function() {
+  $.ajax({
+    method: "GET",
+    url: "/delete",
+    dataType: "json",
+    success: function(res) {
+      console.log(res);
+      alert("Your articles have been deleted!");
+    }
+  });
+});
+
+$(document).on("click", "#reloadbtn", function() {
+  location.reload();
 });

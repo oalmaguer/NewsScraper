@@ -42,16 +42,12 @@ app.get("/scrape", function(req, res) {
 
       db.Article.create(result)
         .then(function(dbArticle) {
-          console.log(dbArticle);
+          console.log("Success");
         })
         .catch(function(err) {
           console.log(err);
-
-          res.send("Scrape Complete");
         });
     });
-
-    console.log(result);
   });
 });
 
@@ -59,6 +55,23 @@ app.get("/articles", function(req, res) {
   db.Article.find()
     .then(function(dbArticle) {
       res.json(dbArticle);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+});
+
+app.get("/delete", function(req, res) {
+  db.Article.remove({})
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  db.Comments.remove({})
+    .then(function(dbComment) {
+      res.json(dbComment);
     })
     .catch(function(err) {
       console.log(err);
