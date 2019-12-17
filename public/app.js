@@ -5,7 +5,10 @@ $("#scrapebtn").click(function() {
     dataType: "json",
     success: function(res) {
       console.log(res);
-      alert("Your content is being scraped!");
+      alert(
+        "Your content is being scraped! If you don't see them reload the site and wait"
+      );
+      location.reload();
     }
   });
 });
@@ -13,7 +16,9 @@ $("#scrapebtn").click(function() {
 $.getJSON("/articles", function(data) {
   if (data.length == 0) {
     console.log("No articles");
-    $("#articles").prepend("<h2>No articles to display</h2>");
+    $("#articles").prepend(
+      "<h2>No articles to display, press scrape and reload the site to get the articles</h2>"
+    );
   } else {
     for (var i = 0; i < data.length; i++) {
       $("#articles").append(
@@ -106,6 +111,7 @@ $("#deletebtn").click(function() {
     success: function(res) {
       console.log(res);
       alert("Your articles have been deleted!");
+      location.reload();
     }
   });
 });
