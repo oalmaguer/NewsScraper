@@ -145,6 +145,6 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-app.listen(PORT, function() {
+app.listen(process.env.PORT || 8080, function() {
   console.log("Listening on http://localhost:" + PORT);
 });
